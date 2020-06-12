@@ -72,6 +72,8 @@
 #' @import randomcoloR
 #' @import dplyr
 #' @import edgeR
+#' 
+#' @export
 
 
 
