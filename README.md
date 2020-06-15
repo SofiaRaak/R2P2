@@ -38,7 +38,12 @@ NB! Values in the metadata file CANNOT start with a number!
 This pipeline requires several R-packages to successfully run. They can be installed with the following code:
 
 ```
-install.packages(c("devtools","limma","Glimma","glpots","RColorBrewer","randomcoloR","dplyr","edgeR"))
+install.packages(c("devtools","RColorBrewer","randomcoloR","dplyr"))
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+    
+BiocManager::install(c("limma","Glimma","gplots","edgeR"))
 ```
 
 ### Installing
