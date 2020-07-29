@@ -169,10 +169,11 @@ process_countMatrix <- function(sourcedir,countMatrix,metadata,rownameColumn,
     morecols <- colorRampPalette(mypalette)
     cols <- c()
     col.cell <- c()
+    a <- as.data.frame(table(group))
     for (i in 1:length(group)){
-      cols <- c(paste(distinctColorPalette(k=3,altCol=FALSE,runTsne=FALSE)))
+      cols <- c(paste(distinctColorPalette(k=nrow(a),altCol=FALSE,runTsne=FALSE)))
       for (j in 1:length(cols)){
-        col.cell <- c(col.cell,paste(replicate(3,cols[j])))
+        col.cell <- c(col.cell,paste(replicate(a$Freq[j],cols[j])))
       }
       return(col.cell)
     }
@@ -183,6 +184,13 @@ process_countMatrix <- function(sourcedir,countMatrix,metadata,rownameColumn,
               main="Top 500 most variable genes across samples",
               ColSideColors=col.cell,scale="row",
               Colv=FALSE, dendrogram="row")
+
+    legend("topright",
+           legend = a$group,
+           col=cols,
+           lty=1,
+           lwd=5,
+           cex=.7)
     dev.off
   }
 
